@@ -8,4 +8,8 @@ for x in sizes:
         os.mkdir("{} Inch".format(x))
 
 for f in os.listdir():
-    print(f)
+    if f[-8:] == "Inch.pes":
+        size = f[-10]
+        oldFile = '/Users/abby/Embroidery Fonts/test font/{}'.format(f)
+        destination = '/Users/abby/Embroidery Fonts/test font/{} Inch/{}'.format(size, f)
+        os.rename(oldFile, destination)
