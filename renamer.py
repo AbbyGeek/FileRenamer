@@ -38,7 +38,7 @@ for f in os.listdir():
             elif char == "period" or char == "dot": char = "."
             elif char == "dollar": char = "$"
             elif char == "number": char = "#"
-            elif char == "question": char = "question" #Unable to 
+            elif char == "question": char = "question" #Unable to name a file "?"
             else: 
                 print("{} is not defined".format(f))
                 break
