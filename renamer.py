@@ -1,6 +1,9 @@
 import os
 
-os.chdir('/Users/abby/Embroidery Fonts/test font/')
+PC = "C:\\Users\Abby\Desktop\Patches\Stock\Fonts\PES\PES\\test font"
+MAC = "/Users/abby/Embroidery Fonts/test font/"
+comp = PC
+os.chdir(PC)
 
 for f in os.listdir():
     fList = f.split()
@@ -12,26 +15,27 @@ for f in os.listdir():
             os.mkdir("{} Inch".format(size))
         #Upper
         if charType == "upper":
-            destination = '/Users/abby/Embroidery Fonts/test font/{} Inch/{}.pes'.format(size, char.upper())
+            destination = '{}/{} Inch/{}.pes'.format(comp, size, char.upper())
         #Lower
         elif charType == "lower":
-            destination = '/Users/abby/Embroidery Fonts/test font/{} Inch/{}.pes'.format(size, char.lower())
+            destination = '{}/{} Inch/{}.pes'.format(comp, size, char.lower())
         #Number
         elif charType == "number":
-            destination = '/Users/abby/Embroidery Fonts/test font/{} Inch/{}.pes'.format(size, char())
+            destination = '{}/{} Inch/{}.pes'.format(comp, size, char)
         #Bonus
         elif charType == "bonus":
             if char == "exclamation": char = "!"
-            if char == "dash": char = "-"
-            if char == "at": char = "@"
-            if char == "ampersand": char = "&"
-            if char == "period" or char == "dot": char = "."
-            if char == "dollar": char = "$"
-            if char == "question": char = "?"
-            # print(char)
-            destination = '/Users/abby/Embroidery Fonts/test font/{} Inch/{}.pes'.format(size, char)
-        else: print(f)
-        oldFile = '/Users/abby/Embroidery Fonts/test font/{}'.format(f)
+            elif char == "dash": char = "-"
+            elif char == "at": char = "@"
+            elif char == "ampersand": char = "&"
+            elif char == "period" or char == "dot": char = "."
+            elif char == "dollar": char = "$"
+            elif char == "number": char = "#"
+            elif char == "question": char = "question" #Unable to 
+            else: 
+                print("{} is not defined".format(f))
+                break
+            destination = '{}/{} Inch/{}.pes'.format(comp, size, char)
+        else: print("Error w/ file {}".format(f))
+        oldFile = '{}/{}'.format(comp, f)
         os.rename(oldFile, destination)
-
-        ##Something isn't working. Only a few files are being sorted. The majority get lost somewhere
