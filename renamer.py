@@ -1,10 +1,12 @@
 import os
 
 PC = "C:\\Users\Abby\Desktop\Patches\Stock\Fonts\PES\PES\\test font"
-MAC = "/Users/abby/Embroidery Fonts/test font/"
+MAC = "/Users/abby/Embroidery Fonts/test font"
 comp = PC
 os.chdir(PC)
 
+if os.path.isdir('PES'):
+    os.chdir(comp+"/pes")
 for f in os.listdir():
     fList = f.split()
     if(fList[-1]) == "Inch.pes":
