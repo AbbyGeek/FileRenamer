@@ -1,10 +1,15 @@
 import os
 '''
 TODO: 
- YoungForeverPES font does not have "bonus" label on all files.
  Wavie 3 inch number need space between Number and Char
- Errors: 1295
- Undefined Chars: 28
+ Define "star"
+ Check Karate " bonus mark
+Check Fonts: Yeller, Bumblebee, Karate, ForevernEver
+ Define Bolt for Yeller
+ Define Heart for ForevernEver
+ DEFINE OBLIQUE, FULLSTOP, PLUS, SPEECHMARK FOR BUMBLEBEE
+ Errors: 3402
+ Undefined Chars: 203
 '''
 
 
@@ -32,7 +37,10 @@ for fontName in next(os.walk('.'))[1]:
         if(fList[-1]) == "Inch.pes":
             size = fList[-2]
             char = fList[-3].lower()
-            charType = fList[-4].lower()
+            try:
+                charType = fList[-4].lower()
+            except:
+                charType="bonus"
             # Creates folder for specific size if not created
             if not os.path.isdir("{} Inch".format(size)):
                 os.mkdir("{} Inch".format(size))
@@ -57,15 +65,25 @@ for fontName in next(os.walk('.'))[1]:
                     destination = '{}/{}/{} Inch/{}.pes'.format(comp, fontName, size, char)
             #Bonus (refactor this mess)
             elif charType == "bonus":
-                if char == "exclamation": char = "!"
+                if char == "exclamation" or char == "exp" or char == "exlamation": char = "!"
                 elif char == "dash": char = "-"
-                elif char == "at": char = "@"
-                elif char == "ampersand" or char == "and": char = "&"
-                elif char == "period" or char == "dot": char = "."
+                elif char == "at" or char == "@": char = "@"
+                elif char == "ampersand" or char == "ampersan" or char == "and": char = "&"
+                elif char == "period" or char == "dot": char = "dot"
                 elif char == "dollar" or char == "money": char = "$"
-                elif char == "number": char = "#"
+                elif char == "number" or char == "hash": char = "#"
                 elif char == "percent": char = "%"
-                elif char == "question" or char == "questions": char = "question" #Unable to name a file "?"
+                elif char == "quote": char = '"'
+                elif char == "apostrophe": char = "'"
+                elif char == "plus": char = "+"
+                elif char == "comma": char = ","
+                elif char == "semicolon": char = ";"
+                elif char == "equals": char = "="
+                elif char == "rightbracket": char == "["
+                elif char == "leftbracket": char == "]"
+                elif char == "asterisk": char == "*"
+                elif char == "hyphen": char == "-"
+                elif char == "question" or char == "questions" or char == "questionmark": char = "question" #Unable to name a file "?"
                 else: 
                     print("{} is not defined for {}".format(f, fontName))
                     undefinedCount+=1
@@ -74,13 +92,13 @@ for fontName in next(os.walk('.'))[1]:
                 else:
                     destination = '{}/{}/{} Inch/{}.pes'.format(comp, fontName, size, char)
             else: 
-                print("Error w/ file {} in {}".format(f, fontName))
+#                print("Error w/ file {} in {}".format(f, fontName))
                 errorCount+=1
             if extraPES:
                 oldFile = '{}/{}/PES/{}'.format(comp, fontName, f)
             else:
                 oldFile = '{}/{}/{}'.format(comp, fontName, f)
             os.rename(oldFile, destination)
-    print(fontName + " finished")
+    #print(fontName + " finished")
 print("Errors: {}".format(errorCount))
 print("Undefined Chars: {}".format(undefinedCount))
